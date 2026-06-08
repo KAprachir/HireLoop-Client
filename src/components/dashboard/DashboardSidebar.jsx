@@ -1,47 +1,55 @@
 import {
+  LayoutSideContentLeft,
   Bell,
+  Briefcase,
   Envelope,
   Gear,
   House,
-  LayoutSideContentLeft,
   Magnifier,
   Person,
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
+import Link from "next/link";
 
 export function DashboardSidebar() {
   const navItems = [
-    { icon: House, label: "Home" },
-    { icon: Magnifier, label: "Search" },
-    { icon: Bell, label: "Notifications" },
-    { icon: Envelope, label: "Messages" },
-    { icon: Person, label: "Profile" },
-    { icon: Gear, label: "Settings" },
+    { icon: House, href: "/dashboard/recruiter", label: "Home" },
+    { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
+    { icon: Bell, href: "/dashboard/recruiter/jobs/new", label: "Post A Job" },
+    {
+      icon: Briefcase,
+      href: "/dashboard/recruiter/company",
+      label: "Company Profile",
+    },
+    { icon: Envelope, href: "/messages", label: "Messages" },
+    { icon: Person, href: "/profile", label: "Profile" },
+    { icon: Gear, href: "/settings", label: "Settings" },
   ];
 
-  const sidebarItems = (
+  const navContent = (
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => (
-        <button
+        <Link
           key={item.label}
           className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
-          type="button"
+          href={item.href}
         >
           <item.icon className="size-5 text-muted" />
           {item.label}
-        </button>
+        </Link>
       ))}
     </nav>
   );
+
   return (
     <>
       <aside className="hidden w-64 shrink-0 border-r border-default p-4 lg:block">
-        {sidebarItems}
+        {navContent}
       </aside>
       <Drawer>
         <Button className="lg:hidden" variant="secondary">
           <LayoutSideContentLeft />
-          Menu
+          Sidebar
         </Button>
         <Drawer.Backdrop>
           <Drawer.Content placement="left">
@@ -50,7 +58,7 @@ export function DashboardSidebar() {
               <Drawer.Header>
                 <Drawer.Heading>Navigation</Drawer.Heading>
               </Drawer.Header>
-              <Drawer.Body>{sidebarItems}</Drawer.Body>
+              <Drawer.Body>{navContent}</Drawer.Body>
             </Drawer.Dialog>
           </Drawer.Content>
         </Drawer.Backdrop>

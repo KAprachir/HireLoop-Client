@@ -23,7 +23,9 @@ const RecruiterJobs = async () => {
     <div className="p-6 max-w-7xl mx-auto text-white">
       {/* Table Header Section */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold tracking-tight text-white">Manage All Jobs</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-white">
+          Manage All Jobs
+        </h2>
         <p className="text-sm text-zinc-400">
           View, update, or remove job listings for your company.
         </p>
@@ -36,10 +38,10 @@ const RecruiterJobs = async () => {
             <Table.Content className="min-w-[800px]">
               <Table.Header>
                 {/* Custom header styles enforced via simple Tailwind strings */}
-                <Table.Column 
-                  isRowHeader 
-                  defaultWidth="2fr" 
-                  id="jobTitle" 
+                <Table.Column
+                  isRowHeader
+                  defaultWidth="2fr"
+                  id="jobTitle"
                   minWidth={180}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -47,9 +49,9 @@ const RecruiterJobs = async () => {
                   <Table.ColumnResizer />
                 </Table.Column>
 
-                <Table.Column 
-                  defaultWidth="1.2fr" 
-                  id="typeLocation" 
+                <Table.Column
+                  defaultWidth="1.2fr"
+                  id="typeLocation"
                   minWidth={140}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -57,9 +59,9 @@ const RecruiterJobs = async () => {
                   <Table.ColumnResizer />
                 </Table.Column>
 
-                <Table.Column 
-                  defaultWidth="1.2fr" 
-                  id="salary" 
+                <Table.Column
+                  defaultWidth="1.2fr"
+                  id="salary"
                   minWidth={150}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -67,9 +69,9 @@ const RecruiterJobs = async () => {
                   <Table.ColumnResizer />
                 </Table.Column>
 
-                <Table.Column 
-                  defaultWidth="1fr" 
-                  id="deadline" 
+                <Table.Column
+                  defaultWidth="1fr"
+                  id="deadline"
                   minWidth={120}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -77,9 +79,9 @@ const RecruiterJobs = async () => {
                   <Table.ColumnResizer />
                 </Table.Column>
 
-                <Table.Column 
-                  defaultWidth="1fr" 
-                  id="status" 
+                <Table.Column
+                  defaultWidth="1fr"
+                  id="status"
                   minWidth={100}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -87,9 +89,9 @@ const RecruiterJobs = async () => {
                   <Table.ColumnResizer />
                 </Table.Column>
 
-                <Table.Column 
-                  defaultWidth="1fr" 
-                  id="actions" 
+                <Table.Column
+                  defaultWidth="1fr"
+                  id="actions"
                   minWidth={120}
                   className="bg-zinc-800/50 text-zinc-400 font-semibold text-xs border-b border-zinc-800/80 py-3"
                 >
@@ -97,12 +99,21 @@ const RecruiterJobs = async () => {
                 </Table.Column>
               </Table.Header>
 
-              <Table.Body emptyContent={<span className="text-zinc-500">No jobs found for this company.</span>}>
+              <Table.Body
+                emptyContent={
+                  <span className="text-zinc-500">
+                    No jobs found for this company.
+                  </span>
+                }
+              >
                 {jobs.map((job) => {
                   const jobId = job._id?.$oid || job._id;
 
                   return (
-                    <Table.Row key={jobId} className="hover:bg-zinc-800/20 transition-colors">
+                    <Table.Row
+                      key={jobId}
+                      className="hover:bg-zinc-800/20 transition-colors"
+                    >
                       {/* Job Title */}
                       <Table.Cell className="py-4 border-b border-zinc-800/40">
                         <span className="font-semibold text-white text-base tracking-wide">
@@ -175,7 +186,11 @@ const RecruiterJobs = async () => {
                             </Button>
                           </Tooltip>
 
-                          <Tooltip content="Delete Job" color="danger" closeDelay={0}>
+                          <Tooltip
+                            content="Delete Job"
+                            color="danger"
+                            closeDelay={0}
+                          >
                             <Button
                               isIconOnly
                               size="sm"

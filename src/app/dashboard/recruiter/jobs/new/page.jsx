@@ -14,7 +14,6 @@ import {
   Switch,
   Button,
   toast,
-  Toast,
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
 import { redirect } from "next/navigation";
@@ -73,10 +72,10 @@ export default function PostJobPage() {
 
     const res = await createJob(payload);
     if (res.insertedId) {
-      Toast.success("Job posted successfully!");
+      toast.success("Job posted successfully!");
       e.target.reset();
       setIsRemote(false);
-      redirect("/dashboard/recruiter/jobs");
+      redirect(" ");
     }
   };
 
