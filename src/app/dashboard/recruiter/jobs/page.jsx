@@ -2,10 +2,11 @@ import React from "react";
 import { Chip, Table, Button, Tooltip } from "@heroui/react";
 import { Video, Pencil, TrashBin } from "@gravity-ui/icons";
 import { getCompanyJobs } from "@/lib/api/job";
+import { getLogedInRecruiterCompany } from "@/lib/api/companies";
 
 const RecruiterJobs = async () => {
-  const companyId = "company_123"; // todo
-  const jobs = (await getCompanyJobs(companyId)) || [];
+  const company = await getLogedInRecruiterCompany();
+  const jobs = (await getCompanyJobs(company._id)) || [];
 
   // Helper to determine status color
   const getStatusColor = (status) => {
