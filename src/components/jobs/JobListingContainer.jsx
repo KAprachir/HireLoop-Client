@@ -1,11 +1,15 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import JobCard from "@/components/jobs/JobCard";
 import JobFilters from "./JobsFilter";
 
-export default function JobListingContainer({ initialJobs = [] }) {
-  const [searchQuery, setSearchQuery] = useState("");
+function JobListingInner({ initialJobs = [] }) {
+  const searchParams = useSearchParams();
+  const initialSearch = searchParams ? (searchParams.get("search") || "") : "";
+  
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [selectedType, setSelectedType] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isRemoteOnly, setIsRemoteOnly] = useState(false);
@@ -59,7 +63,7 @@ export default function JobListingContainer({ initialJobs = [] }) {
       />
 
       <div className="max-w-7xl mx-auto mb-6 text-sm text-zinc-400">
-        Showing {filteredJobs.length} position{filteredJobs.length !== 1 && "s"}
+        Showing {filteredJobs.length} {filteredJobs.length === 1 ? "position" : "positions"}
       </div>
 
       {filteredJobs.length > 0 ? (
@@ -84,5 +88,13 @@ export default function JobListingContainer({ initialJobs = [] }) {
         </div>
       )}
     </>
+  );
+}
+
+export default function JobListingContainer({ initialJobs = [] }) {
+  return (
+    <Suspense fallback={<div className="max-w-7xl mx-auto text-zinc-400 py-10">Loading jobs board...</div>}>
+      <JobListingInner initialJobs={initialJobs} />
+    </Suspense>
   );
 }

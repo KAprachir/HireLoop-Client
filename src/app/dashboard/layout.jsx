@@ -1,6 +1,13 @@
+import { redirect } from "next/navigation";
+import { getUserSession } from "@/lib/core/session";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 
-const DashBoardLayout = ({ children }) => {
+const DashBoardLayout = async ({ children }) => {
+  const user = await getUserSession();
+  if (!user) {
+    redirect("/auth/signin?redirect=/dashboard/recruiter");
+  }
+
   return (
     <div className="flex min-h-screen">
       <DashboardSidebar />

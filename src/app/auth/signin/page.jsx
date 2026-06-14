@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import {
   Card,
   Button,
@@ -14,7 +14,7 @@ import { Eye, EyeSlash, At, ShieldKeyhole } from "@gravity-ui/icons";
 import { signIn } from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function SigninPage() {
+function SigninForm() {
   // Form fields
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -104,7 +104,7 @@ export default function SigninPage() {
             <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Password
             </Label>
-            <InputGroup className="flex items-center gap-2 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 bg-zinc-50 dark:bg-zinc-900 focus-within:border-primary transition-colors">
+            <InputGroup className="flex items-center gap-2 border border-zinc-200 dark:border-zinc-855 rounded-xl px-3 bg-zinc-50 dark:bg-zinc-900 focus-within:border-primary transition-colors">
               <ShieldKeyhole
                 className="text-zinc-400 pointer-events-none"
                 size={16}
@@ -164,5 +164,13 @@ export default function SigninPage() {
         </form>
       </Card>
     </div>
+  );
+}
+
+export default function SigninPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-4 text-zinc-450">Loading sign in...</div>}>
+      <SigninForm />
+    </Suspense>
   );
 }

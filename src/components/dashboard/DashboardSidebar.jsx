@@ -1,3 +1,4 @@
+import { getUserSession } from "@/lib/core/session";
 import {
   LayoutSideContentLeft,
   Bell,
@@ -7,15 +8,24 @@ import {
   House,
   Magnifier,
   Person,
+  LayoutCellsLarge,
+  Bookmark,
+  FileText,
+  CreditCard,
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import Link from "next/link";
 
-export function DashboardSidebar() {
-  const navItems = [
+export const DashboardSidebar = async () => {
+  const user = await getUserSession();
+  const recruiterNavLinks = [
     { icon: House, href: "/dashboard/recruiter", label: "Home" },
     { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
-    { icon: Bell, href: "/dashboard/recruiter/jobs/new", label: "Post A Job" },
+    {
+      icon: Bell,
+      href: "/dashboard/recruiter/jobs/new",
+      label: "Post A Job",
+    },
     {
       icon: Briefcase,
       href: "/dashboard/recruiter/company",
@@ -25,6 +35,46 @@ export function DashboardSidebar() {
     { icon: Person, href: "/profile", label: "Profile" },
     { icon: Gear, href: "/settings", label: "Settings" },
   ];
+
+  const seekerNavLinks = [
+    {
+      icon: LayoutCellsLarge,
+      href: "/dashboard/seeker",
+      label: "Dashboard",
+    },
+    {
+      icon: Magnifier,
+      href: "/jobs",
+      label: "Jobs",
+    },
+    {
+      icon: Bookmark,
+      href: "/dashboard/seeker/saved",
+      label: "Saved Jobs",
+    },
+    {
+      icon: FileText,
+      href: "/dashboard/seeker/applications",
+      label: "Applications",
+    },
+    {
+      icon: CreditCard,
+      href: "/pricing",
+      label: "Billing",
+    },
+    {
+      icon: Gear,
+      href: "/dashboard/seeker/settings",
+      label: "Settings",
+    },
+  ];
+
+  const navLinksmap = {
+    seeker: seekerNavLinks,
+    recruiter: recruiterNavLinks,
+  };
+
+  const navItems = navLinksmap[user.role || "seeker"];
 
   const navContent = (
     <nav className="flex flex-col gap-1">
@@ -65,4 +115,4 @@ export function DashboardSidebar() {
       </Drawer>
     </>
   );
-}
+};

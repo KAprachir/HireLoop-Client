@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Card, Button } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
 import {
   Check,
   Rocket,
@@ -11,6 +13,8 @@ import {
 } from "@gravity-ui/icons";
 
 export default function PricingPage() {
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
   const [selectedRole, setSelectedRole] = useState("seekers");
 
   // Data Tier Structures
@@ -205,22 +209,32 @@ export default function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <form action="/api/checkout_sessions" method="POST">
-                <input type="hidden" name="plan_id" value={plan.id} />
-                <section>
-                  <button
-                    className={`w-full h-11 font-semibold rounded-xl text-sm tracking-wide transition transform active:scale-[0.98] ${
-                      plan.popular
-                        ? "bg-amber-500 hover:bg-amber-400 text-zinc-950"
-                        : "bg-zinc-950 border border-zinc-800 hover:border-zinc-700 text-zinc-200"
-                    }`}
-                    type="submit"
-                    role="link"
-                  >
-                    {plan.cta}
-                  </button>
-                </section>
-              </form>
+              {plan.price === "$0" ? (
+                <Button
+                  as={Link}
+                  href={isLoggedIn ? (selectedRole === "seekers" ? "/jobs" : "/dashboard/recruiter") : "/auth/signup?redirect=/pricing"}
+                  className="w-full h-11 font-semibold rounded-xl text-sm tracking-wide transition transform active:scale-[0.98] bg-zinc-950 border border-zinc-800 hover:border-zinc-700 text-zinc-200 flex items-center justify-center cursor-pointer"
+                >
+                  {plan.cta}
+                </Button>
+              ) : (
+                <form action="/api/checkout_sessions" method="POST">
+                  <input type="hidden" name="plan_id" value={plan.id} />
+                  <section>
+                    <button
+                      className={`w-full h-11 font-semibold rounded-xl text-sm tracking-wide transition transform active:scale-[0.98] cursor-pointer ${
+                        plan.popular
+                          ? "bg-amber-500 hover:bg-amber-400 text-zinc-950"
+                          : "bg-zinc-950 border border-zinc-800 hover:border-zinc-700 text-zinc-200"
+                      }`}
+                      type="submit"
+                      role="link"
+                    >
+                      {plan.cta}
+                    </button>
+                  </section>
+                </form>
+              )}
             </Card>
           ))}
         </div>
