@@ -12,6 +12,8 @@ import {
   Bookmark,
   FileText,
   CreditCard,
+  Persons,
+  BranchesDown,
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import Link from "next/link";
@@ -68,10 +70,43 @@ export const DashboardSidebar = async () => {
       label: "Settings",
     },
   ];
+  const adminNavLinks = [
+    {
+      icon: LayoutCellsLarge,
+      href: "/dashboard/admin",
+      label: "Dashboard",
+    },
+    {
+      icon: Persons,
+      href: "/dashboard/admin/users",
+      label: "Users",
+    },
+    {
+      icon: BranchesDown,
+      href: "/dashboard/admin/companies",
+      label: "Companies",
+    },
+    {
+      icon: Briefcase,
+      href: "/dashboard/admin/jobs",
+      label: "Jobs",
+    },
+    {
+      icon: CreditCard,
+      href: "/dashboard/admin/payments",
+      label: "Payments",
+    },
+    {
+      icon: Gear,
+      href: "/dashboard/admin/settings",
+      label: "Settings",
+    },
+  ];
 
   const navLinksmap = {
     seeker: seekerNavLinks,
     recruiter: recruiterNavLinks,
+    admin: adminNavLinks,
   };
 
   const navItems = navLinksmap[user.role || "seeker"];
