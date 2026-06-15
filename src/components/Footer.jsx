@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LogoFacebook,
   LogoLinkedin,
@@ -7,6 +10,11 @@ import {
 
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/dashboard")) {
+    return null;
+  }
   return (
     <footer className="border-t border-white/10 bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">

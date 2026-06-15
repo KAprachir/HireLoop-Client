@@ -4,11 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { useSession, signOut } from "@/lib/auth-client";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, isPending } = useSession();
   const user = session?.user;
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/dashboard")) {
+    return null;
+  }
 
   const handleSignOut = async () => {
     await signOut();

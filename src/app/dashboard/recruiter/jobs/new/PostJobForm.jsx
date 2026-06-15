@@ -54,10 +54,12 @@ export default function PostJobForm({ company }) {
         isPubliclyVisible: true,
       });
 
-      if (res?.insertedId) {
+      if (res?.insertedId || res?.acknowledged) {
         toast.success("Job posted successfully!");
-        router.push("/jobs");
+        router.push("/dashboard/recruiter/jobs");
         router.refresh();
+      } else {
+        toast.error(res?.message || "Failed to publish job listing.");
       }
     } catch (error) {
       toast.error("An error occurred while publishing.");

@@ -50,12 +50,11 @@ export default function StatsSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-medium leading-relaxed text-white/90">
-            Assisting over 15,000 job seekers
+          <h2 className="text-xl md:text-2xl font-bold leading-relaxed text-white/90">
+            Assisting over 15,000+ job seekers
             <br />
             find their dream positions.
           </h2>
-          <p>Remote Jobs</p>
         </div>
 
         {/* Stats Cards */}

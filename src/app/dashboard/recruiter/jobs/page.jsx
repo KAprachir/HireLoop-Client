@@ -3,6 +3,7 @@ import { Chip, Table, Button, Tooltip } from "@heroui/react";
 import { Video, Pencil, TrashBin } from "@gravity-ui/icons";
 import { getCompanyJobs } from "@/lib/api/job";
 import { getLogedInRecruiterCompany } from "@/lib/api/companies";
+import Link from "next/link";
 
 const RecruiterJobs = async () => {
   const company = await getLogedInRecruiterCompany();
@@ -23,13 +24,20 @@ const RecruiterJobs = async () => {
   return (
     <div className="p-6 max-w-7xl mx-auto text-white">
       {/* Table Header Section */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold tracking-tight text-white">
-          Manage All Jobs
-        </h2>
-        <p className="text-sm text-zinc-400">
-          View, update, or remove job listings for your company.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-white">
+            Manage All Jobs
+          </h2>
+          <p className="text-sm text-zinc-400">
+            View, update, or remove job listings for your company.
+          </p>
+        </div>
+        <Link href="/dashboard/recruiter/jobs/new">
+          <Button className="bg-white hover:bg-zinc-200 text-black font-semibold text-sm rounded-xl px-5 h-10 transition active:scale-[0.98]">
+            + Post New Job
+          </Button>
+        </Link>
       </div>
 
       {/* Styled Wrapper Container replacing the faulty classNames prop */}
