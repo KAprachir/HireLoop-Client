@@ -12,7 +12,8 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   let jobs = [];
   try {
-    jobs = await getjobs();
+    const jobsData = await getjobs();
+    jobs = jobsData?.jobs || [];
   } catch (error) {
     console.error("Failed to load jobs from Express server API:", error);
   }

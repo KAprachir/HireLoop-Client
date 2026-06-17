@@ -5,7 +5,7 @@ import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 const DashBoardLayout = async ({ children }) => {
   const user = await getUserSession();
   if (!user) {
-    redirect("/auth/signin?redirect=/dashboard/recruiter");
+    redirect("/auth/signin?redirect=/dashboard");
   }
 
   return (

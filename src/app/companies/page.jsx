@@ -8,7 +8,8 @@ export const metadata = {
 
 export default async function CompaniesPage() {
   // Fetch active jobs server-side
-  const jobs = await getjobs();
+  const jobsData = await getjobs();
+  const jobs = jobsData?.jobs || [];
 
   // Extract unique companies from jobs array
   const companyMap = {};
