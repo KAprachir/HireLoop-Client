@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation'
 import { getUserToken } from './session'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
@@ -14,7 +15,7 @@ export const authHeader = async () => {
 
 export const serverFetch = async path => {
   const res = await fetch(`${baseUrl}${path}`)
-  return res.json()
+  return handleStatusCode(res)
 }
 
 export const protectedFetch = async path => {
@@ -22,7 +23,7 @@ export const protectedFetch = async path => {
     headers: await authHeader()
   })
   // hadle error
-  return res.json()
+  return handleStatusCode(res)
 }
 
 export const ServerMutation = async (path, data, method = 'POST') => {
@@ -35,5 +36,17 @@ export const ServerMutation = async (path, data, method = 'POST') => {
     body: JSON.stringify(data)
   })
 
+  return handleStatusCode(res)
+}
+
+// handle 401 404 403
+
+const handleStatusCode = async res => {
+  if (res.status === 401 || res.status === 403) {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/unauthorized'
+    }
+    return null
+  }
   return res.json()
 }
