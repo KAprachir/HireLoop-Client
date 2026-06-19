@@ -7,7 +7,8 @@ import Link from "next/link";
 
 const RecruiterJobs = async () => {
   const company = await getLogedInRecruiterCompany();
-  const jobs = (await getCompanyJobs(company._id)) || [];
+  const jobsData = company?._id ? await getCompanyJobs(company._id) : null;
+  const jobs = jobsData?.jobs || [];
 
   // Helper to determine status color
   const getStatusColor = (status) => {
@@ -108,14 +109,20 @@ const RecruiterJobs = async () => {
                 </Table.Column>
               </Table.Header>
 
-              <Table.Body
-                emptyContent={
-                  <span className="text-zinc-500">
-                    No jobs found for this company.
-                  </span>
-                }
-              >
-                {jobs.map((job) => {
+              <Table.Body>
+                {jobs.length === 0 ? (
+                  <Table.Row>
+                    <Table.Cell className="py-8 text-zinc-500 text-center font-medium">
+                      No jobs found for this company.
+                    </Table.Cell>
+                    <Table.Cell className="py-8" />
+                    <Table.Cell className="py-8" />
+                    <Table.Cell className="py-8" />
+                    <Table.Cell className="py-8" />
+                    <Table.Cell className="py-8" />
+                  </Table.Row>
+                ) :
+                  jobs.map((job) => {
                   const jobId = job._id?.$oid || job._id;
 
                   return (

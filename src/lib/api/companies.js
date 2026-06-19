@@ -6,7 +6,7 @@ export const getCompanies = async () => {
 }
 
 export const getRecruiterCompany = async recruiterId => {
-  return serverFetch(`/api/my/companies?recruiterId=${recruiterId}`)
+  return protectedFetch(`/api/my/companies?recruiterId=${recruiterId}`)
 }
 
 export const getLogedInRecruiterCompany = async () => {

@@ -87,7 +87,13 @@ export default function PostJobForm({ company }) {
           </div>
         </div>
 
-        {company?.status !== "Approved" ? (
+        {!company?._id ? (
+          <div className="p-6 text-center rounded-2xl bg-zinc-900/30 border border-zinc-800/80">
+            <p className="text-zinc-400 text-sm">
+              Please register your company first before posting jobs.
+            </p>
+          </div>
+        ) : company?.status !== "Approved" ? (
           <div className="p-6 text-center rounded-2xl bg-zinc-900/30 border border-zinc-800/80">
             <p className="text-zinc-400 text-sm">
               Awaiting administrator profile verification details.
