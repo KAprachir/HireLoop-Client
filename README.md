@@ -36,14 +36,22 @@ HireLoop is a premium, full-featured career portal designed to bridge the gap be
   - Dynamic metrics overview (Applications, Saved, Interviews, Offers).
   - Relative-time applications tracking table.
   - Interactive profile customizer (upload resume, skills, headline, biography).
+  
+  ![Seeker Dashboard](public/seeker_dashboard.png)
+
 - **🏢 Recruiter Dashboard:**
   - Company registrations system (requires Admin approval to list publicly).
   - Job publishing form with limit checks based on plan tier.
   - Applicant pipeline editor (Move candidates dynamically: *Applied ➔ Under Review ➔ Shortlisted ➔ Offered / Rejected*).
+  
+  ![Recruiter Dashboard](public/recruiter_dashboard.png)
+
 - **🛠️ Admin Panel:**
   - Platform metrics and financial analytics dashboard.
   - Corporate registration vetting (Approve/Reject company listings).
   - User permission controls (make recruiter, seeker, or suspend accounts).
+  
+  ![Admin Dashboard](public/admin_dashboard.png)
 
 ---
 
