@@ -1,6 +1,8 @@
 # HireLoop 🌀
 ### **The AI-Native Career Platform & Technical Job Marketplace**
 
+![HireLoop Landing Page](public/screenshot.png)
+
 ---
 
 ## 🔗 Live Application Links
@@ -53,18 +55,6 @@ HireLoop is a premium, full-featured career portal designed to bridge the gap be
 - `src/app/` — Next.js routing structure (pages, API handlers, layout templates)
 - `src/components/` — Modular, reusable React layout blocks (Hero, Stats, Featured, Navbar, Footer)
 - `src/lib/` — Better-Auth, Stripe configuration, client utilities, and database API actions
-
----
-
-## 🔑 Portfolio Login Credentials
-
-To immediately evaluate different facets of the system, use these preset test accounts:
-
-| User Role | Email | Password | Features to Test |
-| :--- | :--- | :--- | :--- |
-| **🛠️ Admin** | `admin@hireloop.com` | `aDMIN@11` | Moderate companies, modify roles, view revenue metrics |
-| **🏢 Recruiter** | `kapprachir@gmail.com` | `53fVAZaq!ATc52Y` | Post jobs, manage company info, change applicant stages |
-| **👤 Seeker** | `prachir@gmail.com` | `Pasword@11` | Browse and save jobs, apply to roles, update skills |
 
 ---
 
