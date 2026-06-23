@@ -12,89 +12,89 @@ import {
 } from "@gravity-ui/icons";
 import { Card, Button } from "@heroui/react";
 
+// Sample Saved Jobs data based on Image 2
+const initialSavedJobs = [
+  {
+    id: "job-1",
+    title: "Senior Product Designer",
+    company: "TechFlow",
+    category: "Design",
+    location: "San Francisco, CA (Hybrid)",
+    salary: "$160k - $200k + Equity",
+    savedAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+    timeAgoText: "Saved 2 hours ago",
+    deadlineText: "Closes in 3 days",
+    deadlineColor: "text-amber-500 bg-amber-500/5 border-amber-500/10",
+    status: "Apply Now",
+    logoLetter: "T",
+    logoBg: "bg-purple-950/60 text-purple-400 border-purple-900/40",
+  },
+  {
+    id: "job-2",
+    title: "Frontend Engineer",
+    company: "Vercel",
+    category: "Engineering",
+    location: "Remote, Global",
+    salary: "$140k - $180k",
+    savedAt: new Date(Date.now() - 24 * 60 * 60 * 1000), // yesterday
+    timeAgoText: "Saved yesterday",
+    deadlineText: "",
+    deadlineColor: "",
+    status: "Apply Now",
+    logoLetter: "▲",
+    logoBg: "bg-zinc-950 text-white border-zinc-800",
+  },
+  {
+    id: "job-3",
+    title: "Staff UI Researcher",
+    company: "Linear",
+    category: "Design",
+    location: "New York, NY (On-site)",
+    salary: "$180k - $220k",
+    savedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+    timeAgoText: "Saved 3 days ago",
+    deadlineText: "",
+    deadlineColor: "",
+    status: "Draft Started",
+    logoLetter: "L",
+    logoBg: "bg-red-950/40 text-red-400 border-red-900/30",
+  },
+  {
+    id: "job-4",
+    title: "Full Stack Developer",
+    company: "Meta",
+    category: "Engineering",
+    location: "Menlo Park, CA (Hybrid)",
+    salary: "$150k - $210k + Bonus",
+    savedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
+    timeAgoText: "Saved 5 days ago",
+    deadlineText: "",
+    deadlineColor: "",
+    status: "Apply Now",
+    logoLetter: "∞",
+    logoBg: "bg-blue-950/40 text-blue-400 border-blue-900/30",
+  },
+  {
+    id: "job-5",
+    title: "Design Systems Lead",
+    company: "Spotify",
+    category: "Design",
+    location: "Remote, USA",
+    salary: "Closed",
+    savedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), // 6 days ago
+    timeAgoText: "Closed yesterday",
+    deadlineText: "Closed",
+    deadlineColor: "text-red-400 bg-red-500/5 border-red-500/10",
+    status: "Remove from List",
+    logoLetter: "S",
+    logoBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/30",
+    isClosed: true,
+  },
+];
+
 export default function SavedJobs() {
   const { data: session } = useSession();
   const user = session?.user || { name: "Guest" };
-
-  // Sample Saved Jobs data based on Image 2
-  const initialSavedJobs = [
-    {
-      id: "job-1",
-      title: "Senior Product Designer",
-      company: "TechFlow",
-      category: "Design",
-      location: "San Francisco, CA (Hybrid)",
-      salary: "$160k - $200k + Equity",
-      savedAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-      timeAgoText: "Saved 2 hours ago",
-      deadlineText: "Closes in 3 days",
-      deadlineColor: "text-amber-500 bg-amber-500/5 border-amber-500/10",
-      status: "Apply Now",
-      logoLetter: "T",
-      logoBg: "bg-purple-950/60 text-purple-400 border-purple-900/40",
-    },
-    {
-      id: "job-2",
-      title: "Frontend Engineer",
-      company: "Vercel",
-      category: "Engineering",
-      location: "Remote, Global",
-      salary: "$140k - $180k",
-      savedAt: new Date(Date.now() - 24 * 60 * 60 * 1000), // yesterday
-      timeAgoText: "Saved yesterday",
-      deadlineText: "",
-      deadlineColor: "",
-      status: "Apply Now",
-      logoLetter: "▲",
-      logoBg: "bg-zinc-950 text-white border-zinc-800",
-    },
-    {
-      id: "job-3",
-      title: "Staff UI Researcher",
-      company: "Linear",
-      category: "Design",
-      location: "New York, NY (On-site)",
-      salary: "$180k - $220k",
-      savedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
-      timeAgoText: "Saved 3 days ago",
-      deadlineText: "",
-      deadlineColor: "",
-      status: "Draft Started",
-      logoLetter: "L",
-      logoBg: "bg-red-950/40 text-red-400 border-red-900/30",
-    },
-    {
-      id: "job-4",
-      title: "Full Stack Developer",
-      company: "Meta",
-      category: "Engineering",
-      location: "Menlo Park, CA (Hybrid)",
-      salary: "$150k - $210k + Bonus",
-      savedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
-      timeAgoText: "Saved 5 days ago",
-      deadlineText: "",
-      deadlineColor: "",
-      status: "Apply Now",
-      logoLetter: "∞",
-      logoBg: "bg-blue-950/40 text-blue-400 border-blue-900/30",
-    },
-    {
-      id: "job-5",
-      title: "Design Systems Lead",
-      company: "Spotify",
-      category: "Design",
-      location: "Remote, USA",
-      salary: "Closed",
-      savedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), // 6 days ago
-      timeAgoText: "Closed yesterday",
-      deadlineText: "Closed",
-      deadlineColor: "text-red-400 bg-red-500/5 border-red-500/10",
-      status: "Remove from List",
-      logoLetter: "S",
-      logoBg: "bg-emerald-950/40 text-emerald-400 border-emerald-900/30",
-      isClosed: true,
-    },
-  ];
 
   const [savedJobs, setSavedJobs] = useState(initialSavedJobs);
   const [activeFilter, setActiveFilter] = useState("All Saved");

@@ -1,6 +1,8 @@
 import { getjobs } from "@/lib/api/job";
 import CompaniesContainer from "./CompaniesContainer";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Companies Hiring - Hire Loop",
   description: "Browse tech teams and engineering departments actively hiring developers on Hire Loop.",

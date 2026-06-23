@@ -15,9 +15,14 @@ export default function SeekerSettings() {
   const { data: session } = useSession();
 
   // Settings states initialized with dummy/mockup data from Image 5
-  const [fullName, setFullName] = useState("Jane Doe");
-  const [email, setEmail] = useState("jane.doe@example.com");
-  const [avatar, setAvatar] = useState("https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face");
+  const [fullName, setFullName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+
+  const currentFullName = fullName !== null ? fullName : (session?.user?.name || "Jane Doe");
+  const currentEmail = email !== null ? email : (session?.user?.email || "jane.doe@example.com");
+  const currentAvatar = avatar !== null ? avatar : (session?.user?.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face");
+
   const [resumeName, setResumeName] = useState("Jane_Doe_Resume_2023.pdf");
   const [resumeSize, setResumeSize] = useState("1.2 MB");
   const [resumeUpdated, setResumeUpdated] = useState("Last updated 2 days ago");
@@ -30,24 +35,13 @@ export default function SeekerSettings() {
   const [newSkillInput, setNewSkillInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Sync with user session if available
-  useEffect(() => {
-    if (session?.user) {
-      setFullName(session.user.name || "Jane Doe");
-      setEmail(session.user.email || "jane.doe@example.com");
-      if (session.user.image) {
-        setAvatar(session.user.image);
-      }
-    }
-  }, [session]);
-
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
       if (session?.user) {
         // Update user name dynamically using better-auth client SDK
         const { error } = await authClient.updateUser({
-          name: fullName,
+          name: currentFullName,
         });
         if (error) {
           toast.error(error.message || "Failed to update profile details.");
@@ -145,11 +139,11 @@ export default function SeekerSettings() {
               <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-emerald-500 rounded-full" />
             </button>
             <div className="w-8 h-8 rounded-full bg-zinc-800 overflow-hidden border border-zinc-700">
-              <img
-                src={avatar}
-                alt="Profile Avatar"
-                className="w-full h-full object-cover"
-              />
+               <img
+                 src={currentAvatar}
+                 alt="Profile Avatar"
+                 className="w-full h-full object-cover"
+               />
             </div>
           </div>
         </div>
@@ -174,7 +168,7 @@ export default function SeekerSettings() {
             <div className="flex items-center gap-5">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-zinc-800 bg-zinc-900 flex-shrink-0">
                 <img
-                  src={avatar}
+                  src={currentAvatar}
                   alt="Current Avatar"
                   className="w-full h-full object-cover"
                 />
@@ -197,7 +191,7 @@ export default function SeekerSettings() {
                   <label className="text-xs font-semibold text-zinc-400">Full Name</label>
                   <input
                     type="text"
-                    value={fullName}
+                    value={currentFullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
                     className="w-full bg-zinc-950 text-sm border border-zinc-800 rounded-xl px-4 py-2.5 text-zinc-200 focus:outline-none focus:border-zinc-750 transition"
@@ -208,7 +202,7 @@ export default function SeekerSettings() {
                   <label className="text-xs font-semibold text-zinc-400">Email Address</label>
                   <input
                     type="email"
-                    value={email}
+                    value={currentEmail}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled

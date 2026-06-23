@@ -14,16 +14,26 @@ export const authHeader = async () => {
 }
 
 export const serverFetch = async path => {
-  const res = await fetch(`${baseUrl}${path}`)
-  return handleStatusCode(res)
+  try {
+    const res = await fetch(`${baseUrl}${path}`)
+    return await handleStatusCode(res)
+  } catch (err) {
+    console.error(`Fetch failed for ${path}:`, err)
+    return null
+  }
 }
 
 export const protectedFetch = async path => {
-  const res = await fetch(`${baseUrl}${path}`, {
-    headers: await authHeader()
-  })
-  // hadle error
-  return handleStatusCode(res)
+  try {
+    const res = await fetch(`${baseUrl}${path}`, {
+      headers: await authHeader()
+    })
+    // hadle error
+    return await handleStatusCode(res)
+  } catch (err) {
+    console.error(`Protected fetch failed for ${path}:`, err)
+    return null
+  }
 }
 
 export const ServerMutation = async (path, data, method = 'POST') => {

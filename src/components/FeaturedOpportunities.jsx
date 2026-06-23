@@ -150,7 +150,7 @@ export default function FeaturedOpportunities({ initialJobs = [] }) {
             Featured Opportunities
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            The roles you'd never find by searching
+            The roles you&apos;d never find by searching
           </h2>
         </div>
 

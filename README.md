@@ -1,6 +1,15 @@
 # HireLoop 🌀
 ### **The AI-Native Career Platform & Technical Job Marketplace**
 
+---
+
+## 🔗 Live Application Links
+
+- **Frontend App:** [https://hire-loop-client-eta.vercel.app](https://hire-loop-client-eta.vercel.app)
+- **Backend API:** [https://hire-loop-server-theta.vercel.app](https://hire-loop-server-theta.vercel.app)
+
+---
+
 HireLoop is a premium, full-featured career portal designed to bridge the gap between job seekers and employers. Built with a modern, high-performance tech stack, it features role-based dashboards, a custom applicant tracking system (ATS), Stripe-integrated subscription tiers, and a refined glassmorphism design system.
 
 ---

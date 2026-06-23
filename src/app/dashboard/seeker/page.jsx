@@ -94,7 +94,7 @@ export default function SeekerDashboardHome() {
           Application for <span className="text-white font-medium">Senior Product Designer</span> at{" "}
           <span className="text-white font-medium">TechFlow</span> updated to{" "}
           <Link href="/dashboard/seeker/applications" className="text-amber-400 hover:text-amber-300 underline font-medium">
-            'Under Review'
+            &apos;Under Review&apos;
           </Link>
         </span>
       ),
