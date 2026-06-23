@@ -20,8 +20,16 @@ HireLoop is a premium, full-featured career portal designed to bridge the gap be
 
 ### **1. Public Job Board & Discovery**
 - **Smart Search & Filters:** Filter roles dynamically by job type (Full-time, Part-time, Remote, Contract, Internship), salary bracket, category, and remote status.
+  
+  ![Job Board Interface](public/jobs.png)
+
 - **Company Profiles Directory:** A dedicated space showing registered and verified teams, active headcount, and public job postings.
+  
+  ![Company Profiles](public/companies.png)
+
 - **Dynamic Pricing Portal:** Distinct subscription plans for Seekers and Recruiters with secure Stripe checkouts.
+  
+  ![Pricing Options](public/pricing.png)
 
 ### **2. Role-Based Dashboards**
 - **👤 Seeker Dashboard:** 
